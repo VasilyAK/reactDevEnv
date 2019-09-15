@@ -1,8 +1,7 @@
 {
     "extends": [
-        "eslint:recommended",
+        "airbnb/hooks",
         "plugin:jest/recommended",
-        "plugin:react/recommended",
         "prettier"
     ],
     "env": {
@@ -14,7 +13,7 @@
     "globals": {
         "shallow": true,
         "render": true,
-        "mount": true,
+        "mount": true
     },
     "plugins": [
         "react",
