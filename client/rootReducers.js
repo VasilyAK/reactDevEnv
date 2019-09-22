@@ -1,7 +1,7 @@
 import reducersTestApp from './testCotainer/reducers';
 
-const reducers = {
+const rootReducers = {
     TestApp: reducersTestApp,
 };
 
-export default reducers;
+export default rootReducers;

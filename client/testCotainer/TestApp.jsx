@@ -1,20 +1,20 @@
 /**
  * тестовый компонент
+ * @namespace Components
  * @author VAK
- * @module TestApp
  * @since 0.0.1
  */
 import './TestApp.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { testAction } from './actions';
+import { testAction, testSagaAction } from './actions';
 
 import koticImg from '~/assets/images/testType1/test.jpg';
 import koticComponentImg from './test_component.jpg';
 
 /**
- * @memberof TestApp
+ * @memberof Components
  * @description тестовый контейнер
  */
 class TestApp extends Component {
@@ -31,7 +31,11 @@ class TestApp extends Component {
         return Math.round(Math.random());
     }
 
+    /**
+     * @description запускает два экшена (для саги и редакса)
+     */
     pressButton() {
+        this.props.dispatch(testSagaAction());
         this.props.dispatch(testAction(!this.props.testData));
     }
 
@@ -43,15 +47,14 @@ class TestApp extends Component {
                 <img src={koticComponentImg}></img>
                 <p className="test">Random number: {this.getRandom()}</p>
                 <button onClick={this.pressButton}>Test action: {this.props.testData.toString()}</button>
+                <p>Saga return: {this.props.testSagaData}</p>
             </>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return {
-        testData: state.TestApp.testData,
-    };
+    return state.TestApp;
 }
 
 export default connect(mapStateToProps)(TestApp);

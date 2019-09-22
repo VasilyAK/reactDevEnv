@@ -1,7 +1,8 @@
-import { TEST_TYPE } from './actionTypes';
+import { TEST_TYPE, TEST_TYPE_SAGA_FULFILLED, TEST_TYPE_SAGA_REJECTED } from './actionTypes';
 
 const initState = {
     testData: false,
+    testSagaData: 0,
 };
 
 const reducersTestApp = (state = initState, { type, payload }) => {
@@ -10,6 +11,16 @@ const reducersTestApp = (state = initState, { type, payload }) => {
             return {
                 ...state,
                 testData: payload,
+            };
+        case TEST_TYPE_SAGA_FULFILLED:
+            return {
+                ...state,
+                testSagaData: payload,
+            };
+        case TEST_TYPE_SAGA_REJECTED:
+            return {
+                ...state,
+                testSagaData: payload,
             };
         default:
             return state;
